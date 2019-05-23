@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+</head>
+<body>
+    <section id = "app">
+        <h1>Book Search</h1>
+        <form @submit.prevent="searchBook">
+                <p>Enter the name of a book here</p>
+            <input type="text" v-model="message">
+            <button type="submit">Search</button>
+        </form>
+
+        <div v-if="loading">
+                <p>Loading...</p>
+        </div>
+        <div v-else>
+            
+            <!-- author, publish date, cover image -->
+                <ul>
+                    
+                    <li v-for='item in bookList.docs'>
+                        <button>Mark Favorite</button>
+                        <header>{{item.title}}</header>
+                        <section>
+                            by
+                            {{item.author_name}}
+                        </section>
+                        <img v-bind:src="img">
+                        <footer>
+                            published:  
+                            {{item.publish_date}}
+                        </footer>
+                        
+                    </li>
+                </ul>
+                
+                    <p></p>
+        </div>
+
+        <div id="favorites">
+
+        </div>
+    </section>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.2/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src = "./script.js"></script>
+</body>
+</html>
